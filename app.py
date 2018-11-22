@@ -44,13 +44,15 @@ def GetD(total, K):
     j=0
     for i in range(len(total)//K): # n // K iter
         d.append(''.join(total[j:j+K]))
-        j += K # print('Total {} Units( each length: {} ) 😲'.format(len(total)//K, K))
+        j += K
     return d
 
 def GetM(total, K):
     print('Modulus % 👇')
-    m = ''.join(total[-(len(total)%K):])
-    # print('Total length {} 🤭'.format(len(total)%K))
+    m = ''
+    lenM = len(total) % K
+    if not lenM == 0:
+        m=''.join(total[-lenM:])
     print(len(m))
     return m
 
@@ -79,28 +81,6 @@ def hello_world():
         return render_template("index.html", error=error)
     except Exception as e:
         return render_template("index.html", error=error)
-
-# @app.route('/<URL>')
-# def GetURL(URL):
-#     try:
-#         requests.get(URL)
-#     except:
-#         return 'URL is not Valid'
-#     return URL
-#
-# @app.route('/<TYPE>')
-# def GetTYPE(TYPE):
-#     if TYPE.lower() not in ['txt', 'html']:
-#         return 'TYPE is \'TXT\' or \'HTML\''
-#     return TYPE
-#
-# @app.route('/<K>')
-# def GetLength(K):
-#     try:
-#         K = int(K)
-#     except ValueError:
-#         return 'Length is integer.'
-#     return K
 
 if __name__ == '__main__':
     app.run()
